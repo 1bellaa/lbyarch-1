@@ -11,15 +11,37 @@ extern void asmdotproduct(float *A, float *B, float *sdot, int n);
 // dot product with SIMD function
 
 int main() {
-    // input
-    int n;
-    printf("Enter the length of the vectors: ");
-    scanf("%d", &n);
-    
-    float *A = (float *)malloc(n * sizeof(float));
-    float *B = (float *)malloc(n * sizeof(float));
-    float csdot = 0.0f;
-    float asmsdot = 0.0f;
+    int i, n;
+	
+	printf("Enter value for n: ");
+	scanf("%d", &n);
+	
+	float vec1[n];
+	float vec2[n];
+	float* vec3 = (float*)malloc(4*sizeof(float));
+	
+	while(i != n){
+		printf("Enter a floating point value for vector 1: \n");
+		scanf("%f", &vec1[i]);
+		
+		printf("Enter a floating point value for vector 2: \n");
+		scanf("%f", &vec2[i]);
+		
+		i++;
+	};		
+	
+	asmdotproduct(n, vec1, vec2, vec3);
+	
+	printf("\n Array 1 contents:");
+	for(i = 0; i < n; i++)
+		printf("%.2f ", vec1[i]);
+		
+	printf("\n Array 2 contents:");
+	for(i = 0; i < n; i++)
+		printf("%.2f ", vec2[i]);
+		
+	printf("\n\n");
+	printf("DotProduct: %.2f", vec3[0]);
 
     // clock, time
 

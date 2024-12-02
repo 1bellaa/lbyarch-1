@@ -1,9 +1,9 @@
 section .text
 bits 64
 default rel
-global dotproduct ; rename this to asmdotproduct
+global asmdotproduct ; rename this to asmdotproduct
 
-dotproduct:
+asmdotproduct:
 
     L1:
         movss xmm0, [rdx]
