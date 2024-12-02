@@ -4,7 +4,9 @@ default rel
 global asmdotproduct 
 
 asmdotproduct:
-
+	
+	xorps xmm2, xmm2
+	
     L1:
         movss xmm0, [rdx]
         movss xmm1, [r8]
