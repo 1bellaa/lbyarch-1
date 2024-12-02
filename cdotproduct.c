@@ -3,7 +3,7 @@
 #include <time.h>
 #include <immintrin.h>
 
-extern void asmdotproduct(float *A, float *B, float *sdot, int n);
+extern void asmdotproduct(int n, float *A, float *B, float *sdot);
 
 // for vector values
 void initialize_vectors(float *A, float *B, int n) {
@@ -58,16 +58,16 @@ int main() {
         c_time += (double)(end - start) / CLOCKS_PER_SEC; 
         
         //ASM Kernel 
-        // start = clock(); 
-        // asmdotproduct(A, B, &asm_sdot, n); 
-        // end = clock(); 
-        // asm_time += (double)(end - start) / CLOCKS_PER_SEC; 
+        start = clock(); 
+        asmdotproduct(n, A, B, &asm_sdot); 
+        end = clock(); 
+        asm_time += (double)(end - start) / CLOCKS_PER_SEC; 
     }
 
     printf("\nResults:\n"); 
     printf("Vector size: %d\n", n); 
     printf("C Kernel Avg Time: %f seconds\n", c_time / runs); 
-    // printf("ASM Kernel Avg Time: %f seconds\n", asm_time / runs); 
+    printf("ASM Kernel Avg Time: %f seconds\n", asm_time / runs); 
     printf("Final dot product (C): %.2f\n", c_sdot); 
     printf("Final dot product (ASM): %.2f\n", asm_sdot); 
     
